@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import TweetBox from "./TweetBox";
-import Post from "./Post";
+import TweetBox from "./TweetBox/TweetBox";
+import Post from "./Post/Post";
 import "./Feed.css";
 import db from "../../firebase";
 import FlipMove from "react-flip-move";
@@ -10,9 +10,11 @@ function Feed() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-      const readRef = collection(db, "posts");
-      const unsub = onSnapshot(readRef, snapshot => setPosts(snapshot.docs.map(doc => doc.data())));
-      return unsub;
+    const readRef = collection(db, "posts");
+    const unsub = onSnapshot(readRef, (snapshot) =>
+      setPosts(snapshot.docs.map((doc) => doc.data()))
+    );
+    return unsub;
   }, []);
 
   return (
