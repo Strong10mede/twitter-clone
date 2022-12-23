@@ -14,6 +14,7 @@ function Feed() {
     const unsub = onSnapshot(readRef, (snapshot) =>
       setPosts(snapshot.docs.map((doc) => doc.data()))
     );
+
     return unsub;
   }, []);
 
@@ -28,13 +29,13 @@ function Feed() {
       <FlipMove>
         {posts.map((post) => (
           <Post
-            key={post.text}
-            displayName={post.displayName}
-            username={post.username}
-            verified={post.verified}
-            text={post.text}
-            avatar={post.avatar}
-            image={post.image}
+            key={post?.text}
+            displayName={post?.displayName}
+            username={post?.username}
+            verified={post?.verified}
+            text={post?.text}
+            avatar={post?.avatar}
+            image={post?.image}
           />
         ))}
       </FlipMove>
